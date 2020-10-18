@@ -21,3 +21,17 @@ export const CREATE_ACCOUNT = gql`
     )
   }
 `;
+
+export const CONFIRM_SECRET = gql`
+  mutation confirmSecret($secret: String!, $email: String!) {
+    confirmSecret(secret: $secret, email: $email)
+  }
+`;
+
+export const LOCAL_LOG_IN = gql`
+  mutation logUserIn($token: String!) {
+    logUserIn(token: $token) @client
+    # 프론트 앤드에서 가져오는 함수라 이렇게 써야함!
+    # localState 파일에 있음!! 내용이..
+  }
+`;
