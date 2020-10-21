@@ -1,12 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import { Link, withRouter } from "react-router-dom";
-import { gql } from "apollo-boost";
+// import { gql } from "apollo-boost";
 import Input from "./Input";
 import useInput from "../Hooks/useInput";
 import { Compass, HeartEmpty, Logo, User } from "./Icons";
 
 import { useQuery } from "@apollo/client";
+import { ME } from "../SharedQueries";
 
 const Header = styled.header`
   width: 100%;
@@ -64,14 +65,15 @@ const HeaderLink = styled(Link)`
   }
 `;
 
-const ME = gql`
-  {
-    me {
-      username
-    }
-  }
+const Text = styled.p`
+  display: block;
+  margin-left: 32px;
+  margin-top: -24px;
+  color: black;
+  font-weight: bold;
+  font-size: 20px;
+  font-family: "Vampiro One";
 `;
-// 백엔드에서 가져온다!!
 
 export default withRouter(({ history }) => {
   // props에서 history를 가저온다!
@@ -90,19 +92,24 @@ export default withRouter(({ history }) => {
         <HeaderColumn>
           <Link to="/">
             <Logo />
+            <Text>Kwangstagram</Text>
           </Link>
         </HeaderColumn>
         <HeaderColumn>
           <form onSubmit={onSearchSubmit}>
             {/* 위에 정의해놨음!! 온서치서브밋! */}
-            <SearchInput {...search} placeholder="Search" />
+            <SearchInput
+              value={search.value}
+              onChange={search.onChange}
+              placeholder="Search"
+            />
           </form>
         </HeaderColumn>
         <HeaderColumn>
           <HeaderLink to="/explore">
             <Compass />
           </HeaderLink>
-          <HeaderLink to="/notifications">
+          <HeaderLink to="/like">
             <HeartEmpty />
           </HeaderLink>
           {!(data !== undefined && data.me) ? (

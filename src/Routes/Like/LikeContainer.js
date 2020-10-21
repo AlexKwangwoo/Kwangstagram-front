@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import useInput from "../../Hooks/useInput";
-import PostPresenter from "./PostPresenter";
 import { useMutation } from "@apollo/client";
-import { ADD_COMMENT, TOGGLE_LIKE } from "./PostQueries";
+import { ADD_COMMENT, TOGGLE_LIKE } from "../../Components/Post/PostQueries";
 // import { ME } from "../../SharedQueries";
 import { toast } from "react-toastify";
+import LikePresenter from "./LikePresenter";
 
 const PostContainer = ({
   //feed로 부터 받아오는 props들을 이용할것임!
@@ -93,7 +93,7 @@ const PostContainer = ({
   //작동 시켜보자!
 
   return (
-    <PostPresenter
+    <LikePresenter
       user={user}
       files={files}
       likeCount={likeCountS}

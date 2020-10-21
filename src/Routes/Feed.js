@@ -1,74 +1,23 @@
 import React from "react";
-import { Helmet } from "react-helmet";
+import { withRouter } from "react-router-dom";
 import styled from "styled-components";
-import { gql } from "apollo-boost";
-import { useQuery } from "@apollo/client";
-import Loader from "../Components/Loader";
-import Post from "../Components/Post";
+import MidFeedPost from "./MidFeedPost";
+import MidFeedUser from "./MidFeedUser";
+// import { useQuery } from "@apollo/client";
 
-const FEED_QUERY = gql`
-  {
-    seeFeed {
-      id
-      location
-      caption
-      user {
-        id
-        avatar
-        username
-      }
-      files {
-        id
-        url
-      }
-      likeCount
-      isLiked
-      comments {
-        id
-        text
-        user {
-          id
-          username
-        }
-      }
-      createdAt
-    }
-  }
-`;
-
-const Wrapper = styled.div`
+const Split = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 80vh;
+  width: 100%;
+  justify-content: center;
 `;
 
-export default () => {
-  const { data, loading } = useQuery(FEED_QUERY);
+export default withRouter(() => {
+  // const { data, loading } = useQuery(FEED_QUERY);
   // console.log(data, loading);
   return (
-    <Wrapper>
-      <Helmet>
-        <title>Feed | Prismagram</title>
-      </Helmet>
-      {loading && <Loader />}
-      {!loading &&
-        data &&
-        data.seeFeed &&
-        data.seeFeed.map((post, index) => (
-          <Post
-            key={post.id}
-            id={post.id}
-            location={post.location}
-            caption={post.caption}
-            user={post.user}
-            files={post.files}
-            likeCount={post.likeCount}
-            isLiked={post.isLiked}
-            comments={post.comments}
-            createdAt={post.createdAt}
-          />
-        ))}
-    </Wrapper>
+    <Split>
+      <MidFeedPost></MidFeedPost>
+      <MidFeedUser></MidFeedUser>
+    </Split>
   );
-};
+});

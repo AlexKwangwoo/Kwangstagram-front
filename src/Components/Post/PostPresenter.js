@@ -1,17 +1,23 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import TextareaAutosize from "react-autosize-textarea";
 import FatText from "../FatText";
 import Avatar from "../Avatar";
-import { HeartFull, HeartEmpty, Comment } from "../Icons";
+import { HeartFull, HeartEmpty, Comment as CommentIcon } from "../Icons";
 
 const Post = styled.div`
   ${(props) => props.theme.whiteBox};
   width: 100%;
   max-width: 600px;
+  user-select: none;
   margin-bottom: 25px;
+  margin-right: -25px;
+  a {
+    color: inherit;
+  }
 `;
-
+//user-select none하면 클릭시 텍스트 선택이 안됨!
 const Header = styled.header`
   padding: 15px;
   display: flex;
@@ -88,6 +94,21 @@ const Textarea = styled(TextareaAutosize)`
   }
 `;
 
+const Comments = styled.ul`
+  margin-top: 10px;
+`;
+
+const Comment = styled.li`
+  margin-bottom: 7px;
+  span {
+    margin-right: 5px;
+  }
+`;
+
+const Caption = styled.div`
+  margin: 10px 0px;
+`;
+
 export default ({
   user: { username, avatar },
   location,
@@ -97,15 +118,22 @@ export default ({
   createdAt,
   newComment,
   currentItem,
+  toggleLike,
+  onKeyPress,
+  comments,
+  selfComments,
+  caption,
 }) => {
-  const a = files.map((file, index) => file.url);
-  console.log(a);
+  // const a = files.map((file, index) => file.url);
+  // console.log(a);
   return (
     <Post>
       <Header>
         <Avatar size="sm" url={avatar} />
         <UserColumn>
-          <FatText text={username} />
+          <Link to={`/${username}`}>
+            <FatText text={username} />
+          </Link>
           <Location>{location}</Location>
         </UserColumn>
       </Header>
@@ -122,15 +150,41 @@ export default ({
           current는 계속 바뀔것이고.. 그에따른 사진파일이 보여질것임! */}
       </Files>
       <Meta>
-        <Buttons>
+        <Buttons onClick={toggleLike}>
           <Button>{isLiked ? <HeartFull /> : <HeartEmpty />}</Button>
           <Button>
-            <Comment />
+            <CommentIcon />
           </Button>
         </Buttons>
         <FatText text={likeCount === 1 ? "1 like" : `${likeCount} likes`} />
+        <Caption>
+          <FatText text={username} /> {caption}
+        </Caption>
+        {comments && (
+          <Comments>
+            {comments.map((comment) => (
+              <Comment key={comment.id}>
+                <FatText text={comment.user.username} />
+                {comment.text}
+              </Comment>
+            ))}
+            {/* 위에꺼는 데이터베이스 저장해서 들고오는용!! */}
+            {selfComments.map((comment) => (
+              <Comment key={comment.id}>
+                <FatText text={comment.user.username} />
+                {comment.text}
+              </Comment>
+            ))}
+            {/* 위에꺼는 내가 당장쓴거 어레이에 저장해서 들고오는용!! */}
+          </Comments>
+        )}
         <Timestamp>{createdAt}</Timestamp>
-        <Textarea placeholder={"Add a comment.."} {...newComment} />
+        <Textarea
+          placeholder={"Add a comment.."}
+          value={newComment.value}
+          onChange={newComment.onChange}
+          onKeyPress={onKeyPress}
+        />
       </Meta>
     </Post>
   );

@@ -15,11 +15,13 @@ export const resolvers = {
           isLoggedIn: true,
         },
       });
+      window.location.reload();
       return null;
     }, //전체 페이지를 reload하고 캐쉬를 리셋할것임!
     logUserOut: (_, __, { cache }) => {
       localStorage.removeItem("token");
-      window.location.reload();
+      // window.location.reload();
+      window.location = "/";
       return null;
     },
   },
