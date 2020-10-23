@@ -4,7 +4,9 @@ import PropTypes from "prop-types";
 
 const getSize = (size) => {
   let number;
-  if (size === "sm") {
+  if (size === "verySm") {
+    number = 20;
+  } else if (size === "sm") {
     number = 30;
   } else if (size === "md") {
     number = 50;
@@ -31,7 +33,7 @@ const Avatar = ({ size = "sm", url, className }) => (
 );
 
 Avatar.propTypes = {
-  size: PropTypes.oneOf(["sm", "md", "mdlg", "lg"]),
+  size: PropTypes.oneOf(["verySm", "sm", "md", "mdlg", "lg"]),
   url: PropTypes.string.isRequired,
 };
 

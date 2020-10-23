@@ -70,15 +70,23 @@ const SearchPresenter = ({ searchTerm, loading, data }) => {
             data.searchPost.map((post) => (
               <SquarePost
                 key={post.id}
+                id={post.id}
                 likeCount={post.likeCount}
                 commentCount={post.commentCount}
                 file={post.files[0]}
+                comments={post.comments}
+                user={post.user}
+                likes={post.likes[0]}
+                isLiked={post.isLiked}
+                createdAt={post.createdAt}
               />
             ))
           )}
         </PostSection>
       </Wrapper>
     );
+  } else {
+    window.location.reload();
   }
 };
 

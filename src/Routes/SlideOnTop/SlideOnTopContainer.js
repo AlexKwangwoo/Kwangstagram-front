@@ -1,5 +1,5 @@
 import React from "react";
-import FeedUserPresenter from "./FeedUserPresenter";
+import SlideOnTopPresenter from "./SlideOnTopPresenter";
 
 // const FeedUser = styled.div`
 //   width: 200px;
@@ -26,17 +26,18 @@ import FeedUserPresenter from "./FeedUserPresenter";
 //   return <FeedUserPresenter user={user} />;
 // };
 
-const FeedUserConatiner = ({ data, loading }) => {
+const SlideOnTopContainer = ({ data, loading }) => {
   if (!loading && data && data.me) {
     const {
-      me: { username, avatar, following },
+      me: { username, avatar, following, firstName },
     } = data;
     // const { data, loading } = useQuery(GET_USER, { variables: { username } });
     return (
-      <FeedUserPresenter
+      <SlideOnTopPresenter
         username={username}
         avatar={avatar}
         following={following}
+        firstName={firstName}
       />
     );
   } else {
@@ -47,7 +48,7 @@ const FeedUserConatiner = ({ data, loading }) => {
 // const FeedUserConatiner = (user) => {
 //   return null;
 // };
-export default FeedUserConatiner;
+export default SlideOnTopContainer;
 
 // const FeedUserConatiner = ({ user }) => {
 //   // const { data, loading } = useQuery(GET_USER, { variables: { user.username } });

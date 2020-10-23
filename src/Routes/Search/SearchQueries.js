@@ -7,8 +7,28 @@ export const SEARCH = gql`
       files {
         url
       }
+      likes {
+        user {
+          username
+          avatar
+        }
+      }
+      isLiked
       likeCount
       commentCount
+      comments {
+        text
+        user {
+          username
+          avatar
+        }
+      }
+      user {
+        avatar
+        username
+      }
+
+      createdAt
     }
     searchUser(term: $term) {
       id

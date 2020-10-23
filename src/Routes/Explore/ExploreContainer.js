@@ -22,6 +22,12 @@ const FEED_QUERY = gql`
         id
         url
       }
+      likes {
+        user {
+          avatar
+          username
+        }
+      }
       likeCount
       isLiked
       comments {
@@ -33,6 +39,7 @@ const FEED_QUERY = gql`
         }
       }
       createdAt
+      commentCount
     }
   }
 `;
@@ -48,41 +55,51 @@ const Wrapper = styled.div`
 `;
 
 const MidLoadder = styled.div`
-  margin-top: -300px;
-  margin-left: 420px;
+  margin-top: -350px;
 `;
 
 export default () => {
   const { data, loading } = useQuery(FEED_QUERY);
-  // console.log(data, loading);
-  return (
-    <Wrapper>
-      <Helmet>
-        <title>Feed | Prismagram</title>
-      </Helmet>
-      {loading && (
-        <MidLoadder>
-          <Loader />
-        </MidLoadder>
-      )}
-      {!loading &&
-        data &&
-        data.seeFeed &&
-        data.seeFeed.map((post) => (
-          <ExplorePresenter
-            key={post.id}
-            id={post.id}
-            location={post.location}
-            caption={post.caption}
-            user={post.user}
-            files={post.files}
-            likeCount={post.likeCount}
-            isLiked={post.isLiked}
-            comments={post.comments}
-            createdAt={post.createdAt}
-            commentCount={post.commentCount}
-          />
-        ))}
-    </Wrapper>
-  );
+  if (loading === true) {
+    return (
+      <MidLoadder>
+        <Loader />
+      </MidLoadder>
+    );
+  } else if (!loading && data) {
+    return (
+      <Wrapper>
+        <Helmet>
+          <title>Feed | Prismagram</title>
+        </Helmet>
+        {loading && (
+          <MidLoadder>
+            <Loader />
+          </MidLoadder>
+        )}
+        {!loading &&
+          data &&
+          data.seeFeed &&
+          data.seeFeed.map((post) => (
+            <ExplorePresenter
+              key={post.id}
+              id={post.id}
+              location={post.location}
+              caption={post.caption}
+              user={post.user}
+              files={post.files}
+              likeCount={post.likeCount}
+              isLiked={post.isLiked}
+              comments={post.comments}
+              createdAt={post.createdAt}
+              likes={post.likes[0]}
+              commentCount={post.commentCount}
+            />
+          ))}
+      </Wrapper>
+    );
+  } else {
+    window.location.reload();
+    return null;
+  }
 };

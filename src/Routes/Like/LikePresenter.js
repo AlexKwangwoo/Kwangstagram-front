@@ -10,7 +10,7 @@ import {
   Comment as CommentIcon,
 } from "../../Components/Icons";
 
-const Wrapper = styled.div``;
+// const Wrapper = styled.div``;
 
 const Post = styled.div`
   ${(props) => props.theme.whiteBox};

@@ -5,8 +5,8 @@ import Auth from "../Routes/Auth";
 import Feed from "../Routes/Feed";
 import Explore from "../Routes/Explore";
 import Search from "../Routes/Search";
-import Profile from "../Routes/Profile";
 import BeforeLike from "../Routes/BeforeLike";
+import ProfileContainerTwo from "../Routes/ProfileContainerTwo";
 
 const LoggedInRoutes = () => (
   <Switch>
@@ -14,7 +14,7 @@ const LoggedInRoutes = () => (
     <Route path="/explore" component={Explore} />
     <Route path="/search" component={Search} />
     <Route path="/like" component={BeforeLike} />
-    <Route path="/:username" component={Profile} />
+    <Route path="/:username" component={ProfileContainerTwo} />
     <Redirect from="*" to="/" />
     {/* 동작하는 라우터가 없으면 모든 주소에 대해 /로 보내준다!! */}
   </Switch> //username이 앞에있으면 /username이 항상 먼저오기때문에 맨뒤에 나둠!

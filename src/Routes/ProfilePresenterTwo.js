@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Helmet } from "react-helmet";
-import Loader from "../../Components/Loader";
-import Avatar from "../../Components/Avatar";
-import FatText from "../../Components/FatText";
-import FollowButton from "../../Components/FollowButton";
-import SquarePost from "../../Components/SquarePost";
-import Button from "../../Components/Button";
+import Loader from "../Components/Loader";
+import Avatar from "../Components/Avatar";
+import FatText from "../Components/FatText";
+import FollowButton from "../Components/FollowButton";
+import SquarePost from "../Components/SquarePost";
+import Button from "../Components/Button";
+import { HeartFull_S } from "../Components/Icons";
 
 const Wrapper = styled.div`
   min-height: 100vh;
@@ -68,7 +69,21 @@ const Line = styled.div`
   height: 0;
   border: 0.1px solid;
   border-color: ${(props) => props.theme.lightGreyColor};
-  margin-bottom: 40px;
+`;
+const Line_U = styled.div`
+  width: 10%;
+  margin: auto;
+  height: 0;
+  border: 0.1px solid;
+  border-color: ${(props) => props.theme.darkGreyColor};
+`;
+const Line_T = styled.div`
+  width: 10%;
+  margin: auto;
+  height: 0;
+  border: 0.1px solid;
+  border-color: ${(props) => props.theme.darkGreyColor};
+  margin-bottom: 10px;
 `;
 
 const Posts = styled.div`
@@ -77,6 +92,19 @@ const Posts = styled.div`
   grid-gap: 20px;
   grid-template-rows: 300px;
   grid-auto-rows: 300px;
+`;
+
+const Text = styled.p`
+  font-weight: 600;
+  font-size: 16px;
+  margin: auto;
+  text-align: center;
+  margin-bottom: 40px;
+`;
+
+const PostText = styled.div`
+  display: inline-block;
+  margin-left: 5px;
 `;
 
 export default ({ loading, data, logOut }) => {
@@ -102,6 +130,7 @@ export default ({ loading, data, logOut }) => {
         posts,
       },
     } = data;
+
     return (
       <Wrapper>
         <Helmet>
@@ -137,20 +166,36 @@ export default ({ loading, data, logOut }) => {
             <Bio>{bio}</Bio>
           </HeaderColumn_R>
         </Header>
+        <Line_U />
         <Line />
+        <Line_T />
+        <Text>
+          <HeartFull_S />
+          <PostText>POSTS</PostText>
+        </Text>
         <Posts>
           {posts &&
             posts.map((post) => (
               <SquarePost
                 key={post.id}
+                id={post.id}
                 likeCount={post.likeCount}
                 commentCount={post.commentCount}
                 file={post.files[0]}
+                user={post.user}
+                comments={post.comments}
+                likeCount={post.likeCount}
+                isLiked={post.isLiked}
+                likes={post.likes[0]}
+                createdAt={post.createdAt}
               />
             ))}
         </Posts>
       </Wrapper>
     );
+  } else {
+    window.location.reload();
+    // 얘는 마지막에 넣어야됨.. 읽다가 있으면 실행되버림
   }
   return null;
 };

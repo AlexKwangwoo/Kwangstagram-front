@@ -3,6 +3,24 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Avatar from "../../Components/Avatar";
 import FollowButton from "../../Components/FollowButton";
+import { Scrollbars } from "react-custom-scrollbars";
+
+const renderThumb = ({ style, ...props }) => {
+  const thumbStyle = {
+    borderRadius: 6,
+    backgroundColor: "rgba(35, 49, 86, 0.8)",
+  };
+  return <div style={{ ...style, ...thumbStyle }} {...props} />;
+};
+
+const CustomScrollbars = (props) => (
+  <Scrollbars
+    renderThumbHorizontal={renderThumb}
+    renderThumbVertical={renderThumb}
+    {...props}
+  />
+);
+
 const Wrapper = styled.div`
   width: 300px;
   position: fixed;
@@ -49,6 +67,7 @@ const ButtonPrison = styled.div`
   width: 80px;
   text-align: right;
   margin-left: auto;
+  margin-right: 15px;
 `;
 
 const BottomTextFirst = styled.p`
@@ -95,24 +114,31 @@ export default ({ username, avatar, following }) => {
         </HeaderColumn>
         <FollowingFriends>Your Following Friends</FollowingFriends>
         <FollowingColumn>
-          {following &&
-            following.map((following) => (
-              <HeaderColumn_f key={following.id}>
-                <Link to={`/${following.username}`}>
-                  <Avatar size="sm" url={following.avatar} />
-                </Link>
+          <CustomScrollbars
+            style={{ width: 300, height: 350 }}
+            autoHide
+            autoHideTimeout={500}
+            autoHideDuration={200}
+          >
+            {following &&
+              following.map((following) => (
+                <HeaderColumn_f key={following.id}>
+                  <Link to={`/${following.username}`}>
+                    <Avatar size="sm" url={following.avatar} />
+                  </Link>
 
-                <Link to={`/${following.username}`}>
-                  <Username>{following.username}</Username>
-                </Link>
-                <ButtonPrison>
-                  <FollowButton
-                    isFollowing={following.isFollowing}
-                    id={following.id}
-                  />
-                </ButtonPrison>
-              </HeaderColumn_f>
-            ))}
+                  <Link to={`/${following.username}`}>
+                    <Username>{following.username}</Username>
+                  </Link>
+                  <ButtonPrison>
+                    <FollowButton
+                      isFollowing={following.isFollowing}
+                      id={following.id}
+                    />
+                  </ButtonPrison>
+                </HeaderColumn_f>
+              ))}
+          </CustomScrollbars>
         </FollowingColumn>
       </Header>
       <BottomTextFirst>

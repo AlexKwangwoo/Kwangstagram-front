@@ -23,6 +23,7 @@ const GET_ME = gql`
 const FeedUserSpace = styled.div`
   width: 200px;
   height: 300px;
+  margin-left: 10px;
   flex-grow: 1;
 `;
 
@@ -30,7 +31,7 @@ export default () => {
   const { data, loading } = useQuery(GET_ME);
   return (
     <FeedUserSpace>
-      <FeedUser data={data} loaind={loading} />
+      <FeedUser data={data} loading={loading} />
     </FeedUserSpace>
   );
 };

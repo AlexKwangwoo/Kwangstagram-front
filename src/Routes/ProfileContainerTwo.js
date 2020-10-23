@@ -2,7 +2,7 @@ import React from "react";
 import { gql } from "apollo-boost";
 import withRouter from "react-router-dom/withRouter";
 import { useQuery, useMutation } from "@apollo/react-hooks";
-import ProfilePresenter from "./ProfilePresenter";
+import ProfilePresenterTwo from "./ProfilePresenterTwo";
 
 const GET_USER = gql`
   query seeUser($username: String!) {
@@ -19,11 +19,31 @@ const GET_USER = gql`
       postsCount
       posts {
         id
+        likes {
+          user {
+            id
+            username
+            avatar
+          }
+        }
+        user {
+          username
+          avatar
+        }
         files {
           url
         }
+        isLiked
         likeCount
         commentCount
+        comments {
+          text
+          user {
+            username
+            avatar
+          }
+        }
+        createdAt
       }
     }
   }
@@ -40,9 +60,11 @@ export default withRouter(
       params: { username },
     },
   }) => {
-    console.log(username);
     const { data, loading } = useQuery(GET_USER, { variables: { username } });
+
     const [logOut] = useMutation(LOG_OUT);
-    return <ProfilePresenter loading={loading} logOut={logOut} data={data} />;
+    return (
+      <ProfilePresenterTwo loading={loading} logOut={logOut} data={data} />
+    );
   }
 );
