@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Link, withRouter } from "react-router-dom";
 // import { gql } from "apollo-boost";
 import Input from "./Input";
 import useInput from "../Hooks/useInput";
-import { Compass, HeartEmpty, Logo, User } from "./Icons";
-
+import { Compass, HeartEmpty, Logo, User, Notification } from "./Icons";
 import { useQuery } from "@apollo/client";
 import { ME } from "../SharedQueries";
 
@@ -65,6 +64,16 @@ const HeaderLink = styled(Link)`
   }
 `;
 
+const NotificationSpace = styled.button`
+  margin-right: 23px;
+  margin-left: -5px;
+  display: inline;
+  cursor: pointer;
+  border: none;
+  background: none;
+  outline: none;
+`;
+
 const Text = styled.p`
   display: block;
   margin-left: 32px;
@@ -112,6 +121,18 @@ export default withRouter(({ history }) => {
           <HeaderLink to="/like">
             <HeartEmpty />
           </HeaderLink>
+          <NotificationSpace>
+            <Notification />
+          </NotificationSpace>
+          {/* <Popover
+            isOpen={isPopoverOpen}
+            position={"top"} // preferred position
+            content={<div>Hi! I'm popover content.</div>}
+          >
+            <div onClick={() => setIsPopoverOpen(!isPopoverOpen)}>
+              Click me!
+            </div>
+          </Popover> */}
           {!(data !== undefined && data.me) ? (
             <HeaderLink to="/#">
               <User />

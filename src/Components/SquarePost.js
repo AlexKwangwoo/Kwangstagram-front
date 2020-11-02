@@ -33,6 +33,7 @@ const Overlay = styled.button`
 `;
 //transition opacity변화가 일어날때 0.3초 과정을 통해 효력을 발생시킴!
 const Container = styled.div`
+  height: 100%;
   background-image: url(${(props) => props.bg});
   background-size: cover;
   cursor: pointer;

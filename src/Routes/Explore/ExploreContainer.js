@@ -54,8 +54,23 @@ const Wrapper = styled.div`
   margin-left: 3%;
 `;
 
+// Wrapper.test:nth-child(1){
+
+// }
+
 const MidLoadder = styled.div`
   margin-top: -350px;
+`;
+
+const Grid = styled.div`
+  &:nth-child(7) {
+    grid-column: 3 / 5;
+    grid-row: 1 / 3;
+  }
+  &:nth-child(9) {
+    grid-column: 1 / 4;
+    grid-row: 3 / 6;
+  }
 `;
 
 export default () => {
@@ -81,20 +96,22 @@ export default () => {
           data &&
           data.seeFeed &&
           data.seeFeed.map((post) => (
-            <ExplorePresenter
-              key={post.id}
-              id={post.id}
-              location={post.location}
-              caption={post.caption}
-              user={post.user}
-              files={post.files}
-              likeCount={post.likeCount}
-              isLiked={post.isLiked}
-              comments={post.comments}
-              createdAt={post.createdAt}
-              likes={post.likes[0]}
-              commentCount={post.commentCount}
-            />
+            <Grid>
+              <ExplorePresenter
+                key={post.id}
+                id={post.id}
+                location={post.location}
+                caption={post.caption}
+                user={post.user}
+                files={post.files}
+                likeCount={post.likeCount}
+                isLiked={post.isLiked}
+                comments={post.comments}
+                createdAt={post.createdAt}
+                likes={post.likes[0]}
+                commentCount={post.commentCount}
+              />
+            </Grid>
           ))}
       </Wrapper>
     );

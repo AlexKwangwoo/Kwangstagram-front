@@ -55,7 +55,7 @@ export default () => {
   return (
     <Wrapper>
       <Helmet>
-        <title>Feed | Prismagram</title>
+        <title>Feed | Kwangstagram</title>
       </Helmet>
       {loading && (
         <MidLoadder>

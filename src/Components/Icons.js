@@ -1,6 +1,8 @@
 import React from "react";
 import logo from "./logo.svg";
 import logo2 from "./logo2.jpg";
+import phone from "./phone.JPG";
+import letterB from "./letterB.png";
 
 export const Compass = () => (
   <svg
@@ -70,6 +72,17 @@ export const Comment = () => (
   </svg>
 );
 
+export const Notification = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+  >
+    <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-.001 5.75c.69 0 1.251.56 1.251 1.25s-.561 1.25-1.251 1.25-1.249-.56-1.249-1.25.559-1.25 1.249-1.25zm2.001 12.25h-4v-1c.484-.179 1-.201 1-.735v-4.467c0-.534-.516-.618-1-.797v-1h3v6.265c0 .535.517.558 1 .735v.999z" />
+  </svg>
+);
+
 export const CommentFull = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -83,6 +96,14 @@ export const CommentFull = () => (
 
 export const Logo = ({ size = 24 }) => (
   <img src={logo} alt="logo" width={size} height={size}></img>
+);
+
+export const Phone = ({ width = 365, height = 580 }) => (
+  <img src={phone} alt="phone" width={width} height={height}></img>
+);
+
+export const LetterB = ({ width = 180, height = 40 }) => (
+  <img src={letterB} alt="letter" width={width} height={height}></img>
 );
 
 export const Logo_letter = ({ width = 200, height = 35 }) => (

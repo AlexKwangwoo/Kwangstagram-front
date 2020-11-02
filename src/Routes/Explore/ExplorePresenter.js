@@ -16,7 +16,8 @@ import SquarePost from "../../Components/SquarePost";
 //         onHide={() => setModalShow(false)}
 //       />
 //     </>
-//   );
+// //   );
+// const SquarePost = styled(SquarePost)``;
 
 const ExplorePresenter = ({
   id,
