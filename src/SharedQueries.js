@@ -4,6 +4,16 @@ export const ME = gql`
   {
     me {
       username
+      followers {
+        id
+        createdAt
+        username
+        avatar
+        posts {
+          caption
+          createdAt
+        }
+      }
     }
   }
 `;

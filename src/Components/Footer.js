@@ -29,6 +29,7 @@ const Copyright = styled.span`
   color: ${(props) => props.theme.darkGreyColor};
 `;
 
+// eslint-disable-next-line
 export default () => (
   <Footer>
     <List>

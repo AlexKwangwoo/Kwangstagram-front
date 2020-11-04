@@ -1,1 +1,2 @@
-export default () => "Editprofile"
+// eslint-disable-next-line
+export default () => "Editprofile";

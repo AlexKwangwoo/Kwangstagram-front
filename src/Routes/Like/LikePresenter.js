@@ -115,6 +115,7 @@ const Caption = styled.div`
   margin: 10px 0px;
 `;
 
+// eslint-disable-next-line
 export default ({
   user: { username, avatar },
   location,

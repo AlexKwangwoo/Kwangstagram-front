@@ -4,7 +4,9 @@ import { Link } from "react-router-dom";
 import TextareaAutosize from "react-autosize-textarea";
 import FatText from "../FatText";
 import Avatar from "../Avatar";
+import { Scrollbars } from "react-custom-scrollbars";
 import { HeartFull, HeartEmpty, Comment as CommentIcon } from "../Icons";
+import { formatDate } from "../../utils";
 
 const Post = styled.div`
   ${(props) => props.theme.whiteBox};
@@ -109,6 +111,35 @@ const Caption = styled.div`
   margin: 10px 0px;
 `;
 
+const CommentBox = styled.div`
+  height: 70px;
+`;
+
+const renderThumb = ({ style, ...props }) => {
+  const thumbStyle = {
+    borderRadius: 6,
+    backgroundColor: "rgba(35, 49, 86, 0.8)",
+  };
+  return <div style={{ ...style, ...thumbStyle }} {...props} />;
+};
+
+const renderThumb_h = ({ style, ...props }) => {
+  const thumbStyle = {
+    borderRadius: 6,
+    backgroundColor: null,
+  };
+  return <div style={{ ...style, ...thumbStyle }} {...props} />;
+};
+
+const CustomScrollbars = (props) => (
+  <Scrollbars
+    renderThumbHorizontal={renderThumb_h}
+    renderThumbVertical={renderThumb}
+    {...props}
+  />
+);
+
+// eslint-disable-next-line
 export default ({
   user: { username, avatar },
   location,
@@ -160,7 +191,32 @@ export default ({
         <Caption>
           <FatText text={username} /> {caption}
         </Caption>
-        {comments && (
+        {comments.length > 3 ? (
+          <CommentBox>
+            <CustomScrollbars
+              autoHide
+              autoHideTimeout={500}
+              autoHideDuration={200}
+            >
+              <Comments>
+                {comments.map((comment) => (
+                  <Comment key={comment.id}>
+                    <FatText text={comment.user.username} />
+                    {comment.text}
+                  </Comment>
+                ))}
+                {/* 위에꺼는 데이터베이스 저장해서 들고오는용!! */}
+                {selfComments.map((comment) => (
+                  <Comment key={comment.id}>
+                    <FatText text={comment.user.username} />
+                    {comment.text}
+                  </Comment>
+                ))}
+                {/* 위에꺼는 내가 당장쓴거 어레이에 저장해서 들고오는용!! */}
+              </Comments>
+            </CustomScrollbars>
+          </CommentBox>
+        ) : (
           <Comments>
             {comments.map((comment) => (
               <Comment key={comment.id}>
@@ -178,7 +234,7 @@ export default ({
             {/* 위에꺼는 내가 당장쓴거 어레이에 저장해서 들고오는용!! */}
           </Comments>
         )}
-        <Timestamp>{createdAt}</Timestamp>
+        <Timestamp>{formatDate(createdAt)}</Timestamp>
         <Textarea
           placeholder={"Add a comment.."}
           value={newComment.value}

@@ -53,6 +53,7 @@ const PostContainer = ({
   useEffect(() => {
     //처음에 한번 실행된다 componentDidMount
     slide(); //이함수가 작동할려면 [currentItem]이 변경되야한다!
+    // eslint-disable-next-line
   }, [currentItem]);
 
   const toggleLike = () => {

@@ -1,6 +1,7 @@
 const BOX_BORDER = "1px solid #e6e6e6";
 const BORDER_RADIUS = "4px";
 
+// eslint-disable-next-line
 export default {
   maxWidth: "935px",
   bgColor: "#FAFAFA",

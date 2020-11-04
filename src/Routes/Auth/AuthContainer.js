@@ -10,6 +10,7 @@ import {
 } from "./AuthQueries";
 import { toast } from "react-toastify";
 
+// eslint-disable-next-line
 export default () => {
   const [action, setAction] = useState("logIn");
   const username = useInput("");

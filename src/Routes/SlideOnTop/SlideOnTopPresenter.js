@@ -27,6 +27,7 @@ const AvatarTop = styled(Avatar)`
   border: 3px solid #c42d91;
 `;
 
+// eslint-disable-next-line
 export default ({ username, avatar, following, firstName }) => {
   const settings = {
     slidesToShow: 7,

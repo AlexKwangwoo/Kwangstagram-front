@@ -17,6 +17,7 @@ import { useMutation } from "@apollo/client";
 import { ADD_COMMENT, TOGGLE_LIKE } from "./Post/PostQueries";
 import { toast } from "react-toastify";
 import { Scrollbars } from "react-custom-scrollbars";
+import { formatDate } from "../utils";
 
 const Overlay = styled.button`
   background-color: rgba(0, 0, 0, 0.6);
@@ -383,7 +384,7 @@ const SquarePost = ({
                   {likeCount > 1 ? <FatText text={"others"} /> : null}
                 </LikeBox>
               ) : null}
-              <CreateText>{createdAt}</CreateText>
+              <CreateText>{formatDate(createdAt)}</CreateText>
             </DivThree>
             <DivFour>
               {commentInside ? (

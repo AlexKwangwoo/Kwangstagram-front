@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet";
 import styled from "styled-components";
 import Input from "../../Components/Input";
 import Button from "../../Components/Button";
-import { Logo, Phone, LetterB } from "../../Components/Icons";
+import { Phone, LetterB } from "../../Components/Icons";
 
 const Bigbox = styled.div`
   height: 100%;
@@ -76,6 +76,7 @@ const Form = styled(Box)`
   }
 `;
 
+// eslint-disable-next-line
 export default ({
   action,
   username,

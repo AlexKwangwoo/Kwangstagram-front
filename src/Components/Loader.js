@@ -21,6 +21,7 @@ const Loader = styled.div`
   text-align: center;
 `;
 
+// eslint-disable-next-line
 export default () => (
   <Loader>
     <Logo size={36} />

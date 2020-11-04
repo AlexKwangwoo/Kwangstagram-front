@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { Helmet } from "react-helmet";
 import Loader from "../Components/Loader";
@@ -7,7 +7,7 @@ import FatText from "../Components/FatText";
 import FollowButton from "../Components/FollowButton";
 import SquarePost from "../Components/SquarePost";
 import Button from "../Components/Button";
-import { HeartFull_S } from "../Components/Icons";
+import { HeartFull_S as HeartFullS } from "../Components/Icons";
 
 const Wrapper = styled.div`
   min-height: 100vh;
@@ -24,7 +24,7 @@ const Header = styled.header`
 
 const HeaderColumn = styled.div``;
 
-const HeaderColumn_R = styled.div`
+const HeaderColumnR = styled.div`
   width: 300px;
 `;
 
@@ -70,14 +70,14 @@ const Line = styled.div`
   border: 0.1px solid;
   border-color: ${(props) => props.theme.lightGreyColor};
 `;
-const Line_U = styled.div`
+const LineU = styled.div`
   width: 10%;
   margin: auto;
   height: 0;
   border: 0.1px solid;
   border-color: ${(props) => props.theme.darkGreyColor};
 `;
-const Line_T = styled.div`
+const LineT = styled.div`
   width: 10%;
   margin: auto;
   height: 0;
@@ -107,6 +107,7 @@ const PostText = styled.div`
   margin-left: 5px;
 `;
 
+// eslint-disable-next-line
 export default ({ loading, data, logOut }) => {
   if (loading === true) {
     return (
@@ -140,7 +141,7 @@ export default ({ loading, data, logOut }) => {
           <HeaderColumn>
             <Avatar size="lg" url={avatar} />
           </HeaderColumn>
-          <HeaderColumn_R>
+          <HeaderColumnR>
             <UsernameRow>
               <Username>{username}</Username>
               <ButtonPrision>
@@ -164,13 +165,13 @@ export default ({ loading, data, logOut }) => {
             </Counts>
             <FullName text={fullName} />
             <Bio>{bio}</Bio>
-          </HeaderColumn_R>
+          </HeaderColumnR>
         </Header>
-        <Line_U />
+        <LineU />
         <Line />
-        <Line_T />
+        <LineT />
         <Text>
-          <HeartFull_S />
+          <HeartFullS />
           <PostText>POSTS</PostText>
         </Text>
         <Posts>
@@ -184,7 +185,6 @@ export default ({ loading, data, logOut }) => {
                 file={post.files[0]}
                 user={post.user}
                 comments={post.comments}
-                likeCount={post.likeCount}
                 isLiked={post.isLiked}
                 likes={post.likes[0]}
                 createdAt={post.createdAt}

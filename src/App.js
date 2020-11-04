@@ -23,6 +23,7 @@ const Wrapper = styled.div`
   width: 100%;
 `;
 
+// eslint-disable-next-line
 export default () => {
   const {
     data: { isLoggedIn },

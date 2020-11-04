@@ -1,7 +1,8 @@
 import ProfileContainer from "./ProfileContainer";
-import Feed from "../Feed";
+
+// eslint-disable-next-line
 export default () => {
-  console.log("profilestart");
+  // console.log("profilestart");
   return ProfileContainer;
 };
 

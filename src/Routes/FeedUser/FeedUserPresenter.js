@@ -54,7 +54,7 @@ const FollowingColumn = styled.div`
   flex-direction: column;
 `;
 
-const HeaderColumn_f = styled.div`
+const HeaderColumnf = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 20px;
@@ -98,6 +98,7 @@ const BottomTextLast = styled.p`
   font-size: 12px;
 `;
 
+// eslint-disable-next-line
 export default ({ username, avatar, following }) => {
   // console.log("haha");
   // console.log(follower);
@@ -122,7 +123,7 @@ export default ({ username, avatar, following }) => {
           >
             {following &&
               following.map((following) => (
-                <HeaderColumn_f key={following.id}>
+                <HeaderColumnf key={following.id}>
                   <Link to={`/${following.username}`}>
                     <Avatar size="sm" url={following.avatar} />
                   </Link>
@@ -136,7 +137,7 @@ export default ({ username, avatar, following }) => {
                       id={following.id}
                     />
                   </ButtonPrison>
-                </HeaderColumn_f>
+                </HeaderColumnf>
               ))}
           </CustomScrollbars>
         </FollowingColumn>

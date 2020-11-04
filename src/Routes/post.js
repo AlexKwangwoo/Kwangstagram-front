@@ -1,1 +1,2 @@
-export default () => "Post"
+// eslint-disable-next-line
+export default () => "Post";

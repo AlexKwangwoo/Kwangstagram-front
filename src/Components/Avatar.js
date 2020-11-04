@@ -8,6 +8,8 @@ const getSize = (size) => {
     number = 20;
   } else if (size === "sm") {
     number = 30;
+  } else if (size === "smmd") {
+    number = 40;
   } else if (size === "md") {
     number = 50;
   } else if (size === "mdlg") {

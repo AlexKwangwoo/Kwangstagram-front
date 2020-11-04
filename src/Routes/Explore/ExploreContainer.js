@@ -71,8 +71,13 @@ const Grid = styled.div`
     grid-column: 1 / 4;
     grid-row: 3 / 6;
   }
+  &:nth-child(14) {
+    grid-column: 2 / 4;
+    grid-row: 7 / 9;
+  }
 `;
 
+// eslint-disable-next-line
 export default () => {
   const { data, loading } = useQuery(FEED_QUERY);
   if (loading === true) {

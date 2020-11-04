@@ -38,6 +38,7 @@ const SlideOnTopSpace = styled.div`
   }
 `;
 
+// eslint-disable-next-line
 export default () => {
   const { data, loading } = useQuery(GET_ME);
   if (loading) {

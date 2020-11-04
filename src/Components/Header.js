@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { Link, withRouter } from "react-router-dom";
 // import { gql } from "apollo-boost";
 import Input from "./Input";
 import useInput from "../Hooks/useInput";
-import { Compass, HeartEmpty, Logo, User, Notification } from "./Icons";
+import { Compass, HeartEmpty, Logo, User } from "./Icons";
 import { useQuery } from "@apollo/client";
 import { ME } from "../SharedQueries";
+import Modal from "./Modal";
 
 const Header = styled.header`
   width: 100%;
@@ -84,10 +85,28 @@ const Text = styled.p`
   font-family: "Vampiro One";
 `;
 
+// const Div = styled.div``;
+
+// const Button = styled.button`
+//   cursor: pointer;
+//   border: none;
+//   background: none;
+//   outline: none;
+//   margin-left: -5px;
+//   margin-right: -5px;
+// `;
+
+// const Prison = styled.div`
+//   width: 10px;
+//   height: 10px;
+// `;
+
+// const Button = styled.button``;
+
 export default withRouter(({ history }) => {
   // props에서 history를 가저온다!
   const search = useInput(""); //이것은 훅이다. onChange와 value를 준다!
-  const { data } = useQuery(ME);
+  const { data, loading } = useQuery(ME);
   // if (data !== undefined) {
   //   console.log(data.me);
   // }
@@ -122,17 +141,8 @@ export default withRouter(({ history }) => {
             <HeartEmpty />
           </HeaderLink>
           <NotificationSpace>
-            <Notification />
+            <Modal data={data} loading={loading} />
           </NotificationSpace>
-          {/* <Popover
-            isOpen={isPopoverOpen}
-            position={"top"} // preferred position
-            content={<div>Hi! I'm popover content.</div>}
-          >
-            <div onClick={() => setIsPopoverOpen(!isPopoverOpen)}>
-              Click me!
-            </div>
-          </Popover> */}
           {!(data !== undefined && data.me) ? (
             <HeaderLink to="/#">
               <User />

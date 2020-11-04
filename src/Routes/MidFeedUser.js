@@ -27,6 +27,7 @@ const FeedUserSpace = styled.div`
   flex-grow: 1;
 `;
 
+// eslint-disable-next-line
 export default () => {
   const { data, loading } = useQuery(GET_ME);
   return (

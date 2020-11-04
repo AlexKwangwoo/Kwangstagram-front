@@ -49,6 +49,7 @@ const MidLoadder = styled.div`
   margin-left: 0px;
 `;
 
+// eslint-disable-next-line
 export default () => {
   const { data, loading } = useQuery(FEED_QUERY);
   // console.log(data, loading);
