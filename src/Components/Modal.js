@@ -48,7 +48,6 @@ const Popzindex = styled(Popover)`
 const PopupBox = styled.div`
   display: fixed;
   margin-top: 2vh;
-  margin-right: 32vh;
   width: 500px;
   height: 300px;
   background-color: white;
