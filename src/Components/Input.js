@@ -19,6 +19,7 @@ const Input = ({
   onChange,
   type = "text",
   className,
+  disabled,
 }) => (
   <Container
     className={className}
@@ -27,6 +28,7 @@ const Input = ({
     value={value}
     onChange={onChange}
     type={type}
+    disabled={disabled}
   />
 );
 

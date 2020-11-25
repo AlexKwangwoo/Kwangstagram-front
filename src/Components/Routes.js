@@ -6,6 +6,7 @@ import Feed from "../Routes/Feed";
 import Explore from "../Routes/Explore";
 import Search from "../Routes/Search";
 import BeforeLike from "../Routes/BeforeLike";
+import Message from "../Routes/Message";
 import ProfileContainerTwo from "../Routes/ProfileContainerTwo";
 
 const LoggedInRoutes = () => (
@@ -14,6 +15,7 @@ const LoggedInRoutes = () => (
     <Route path="/explore" component={Explore} />
     <Route path="/search" component={Search} />
     <Route path="/like" component={BeforeLike} />
+    <Route path="/message" component={Message} />
     <Route path="/:username" component={ProfileContainerTwo} />
     <Redirect from="*" to="/" />
     {/* 동작하는 라우터가 없으면 모든 주소에 대해 /로 보내준다!! */}

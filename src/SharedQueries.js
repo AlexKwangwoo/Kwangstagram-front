@@ -14,6 +14,14 @@ export const ME = gql`
           createdAt
         }
       }
+      following {
+        id
+        createdAt
+        username
+        avatar
+        firstName
+        lastName
+      }
     }
   }
 `;

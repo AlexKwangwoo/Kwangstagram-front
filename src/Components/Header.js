@@ -4,7 +4,7 @@ import { Link, withRouter } from "react-router-dom";
 // import { gql } from "apollo-boost";
 import Input from "./Input";
 import useInput from "../Hooks/useInput";
-import { Compass, HeartEmpty, Logo, User } from "./Icons";
+import { Compass, HeartEmpty, Logo, Message, User } from "./Icons";
 import { useQuery } from "@apollo/client";
 import { ME } from "../SharedQueries";
 import Modal from "./Modal";
@@ -143,6 +143,9 @@ export default withRouter(({ history }) => {
           <NotificationSpace>
             <Modal data={data} loading={loading} />
           </NotificationSpace>
+          <HeaderLink to="/message">
+            <Message />
+          </HeaderLink>
           {!(data !== undefined && data.me) ? (
             <HeaderLink to="/#">
               <User />

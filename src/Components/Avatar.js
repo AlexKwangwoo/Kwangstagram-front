@@ -35,7 +35,7 @@ const Avatar = ({ size = "sm", url, className }) => (
 );
 
 Avatar.propTypes = {
-  size: PropTypes.oneOf(["verySm", "sm", "md", "mdlg", "lg"]),
+  size: PropTypes.oneOf(["verySm", "sm", "smmd", "md", "mdlg", "lg"]),
   url: PropTypes.string.isRequired,
 };
 
